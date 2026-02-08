@@ -1,6 +1,13 @@
-import { useState } from 'react'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSheet } from "./store/sheetSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSheet());
+  }, []);
 
   return (
     <>
