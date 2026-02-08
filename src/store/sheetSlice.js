@@ -49,7 +49,7 @@ const buildHierarchy = (questions, topicOrder) => {
 
   //convert object map to array
 
-//   console.log(topicMap);
+  //   console.log(topicMap);
   return topicOrder.map((t) => ({
     ...topicMap[t],
     subTopics: Object.values(topicMap[t].subTopics),
@@ -109,6 +109,25 @@ const sheetSlice = createSlice({
         questions: [],
       });
     },
+    addQuestion: (state, action) => {
+      const { topicId, subTopicId, title, url, difficulty } = action.payload;
+
+      const cleanTitle = title.trim();
+      if (!cleanTitle) return;
+
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (!topic) return;
+
+      const subTopic = topic.subTopics.find((st) => st.id === subTopicId);
+      if (!subTopic) return;
+
+      subTopic.questions.push({
+        id: Date.now().toString(),
+        title: cleanTitle,
+        url: url || "",
+        difficulty: difficulty || "Medium",
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -127,5 +146,5 @@ const sheetSlice = createSlice({
   },
 });
 
-export const { addTopic ,addSubTopic } = sheetSlice.actions;
+export const { addTopic, addSubTopic, addQuestion } = sheetSlice.actions;
 export default sheetSlice.reducer;
