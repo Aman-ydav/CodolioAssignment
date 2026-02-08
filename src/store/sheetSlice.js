@@ -128,6 +128,18 @@ const sheetSlice = createSlice({
         difficulty: difficulty || "Medium",
       });
     },
+    editTopic: (state, action) => {
+      const { topicId, newTitle } = action.payload;
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (topic) {
+        topic.id = newTitle;
+        topic.title = newTitle;
+      }
+    },
+
+    deleteTopic: (state, action) => {
+      state.topics = state.topics.filter((t) => t.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -146,5 +158,6 @@ const sheetSlice = createSlice({
   },
 });
 
-export const { addTopic, addSubTopic, addQuestion } = sheetSlice.actions;
+export const { addTopic, addSubTopic, addQuestion, editTopic, deleteTopic } =
+  sheetSlice.actions;
 export default sheetSlice.reducer;
