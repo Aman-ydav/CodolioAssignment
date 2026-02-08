@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import { fetchSheet } from "./store/sheetSlice";
 import TopicList from "./components/TopicList";
-import AddTopicBar from "./components/AddTopicBar";
+import AddTopicBar from "./components/topic/AddTopicBar";
 
 function App() {
   const dispatch = useDispatch();

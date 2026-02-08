@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addQuestion } from "../store/sheetSlice";
+import { addQuestion } from "../../store/sheetSlice";
 import {
   Dialog,
   DialogContent,
@@ -131,3 +131,4 @@ const AddQuestionModal = ({ topicId, subTopicId }) => {
 };
 
 export default AddQuestionModal;
+

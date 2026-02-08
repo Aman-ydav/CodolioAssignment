@@ -1,6 +1,6 @@
-import DeleteTopicModal from "./DeleteTopicModal";
-import EditTopicModal from "./EditTopicModal";
-import { GripVertical } from "lucide-react";   
+import DeleteTopicModal from "./topic/DeleteTopicModal";
+import EditTopicModal from "./topic/EditTopicModal";
+import { Grip } from "lucide-react";
 
 const TopicCard = ({ topic, dragHandleProps }) => {
   return (
@@ -13,10 +13,12 @@ const TopicCard = ({ topic, dragHandleProps }) => {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <GripVertical
-            className="w-6 h-6 text-gray-500 cursor-grab drag-handle"
+          <span
+            className="inline-flex items-center justify-center cursor-grab drag-handle"
             {...(dragHandleProps || {})}
-          />
+          >
+            <Grip className="w-6 h-6 text-gray-500" />
+          </span>
 
           <div>
             <h2 className="text-xl font-semibold">{topic.title}</h2>

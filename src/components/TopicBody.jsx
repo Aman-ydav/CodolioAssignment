@@ -1,5 +1,5 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
-import AddSubTopicBar from "./AddSubTopicBar";
+import AddSubTopicBar from "./subtopic/AddSubTopicBar";
 import SubTopicAccordion from "./SubTopicAccordion";
 
 const TopicBody = ({ topic }) => {
@@ -24,11 +24,11 @@ const TopicBody = ({ topic }) => {
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    {...provided.dragHandleProps}
                     className="pl-2"
                   >
                     <SubTopicAccordion
                       subTopic={{ ...st, parentTopicId: topic.id }}
+                      dragHandleProps={provided.dragHandleProps}
                     />
                   </div>
                 )}

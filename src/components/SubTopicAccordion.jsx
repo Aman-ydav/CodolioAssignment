@@ -4,19 +4,29 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import QuestionRow from "./QuestionRow";
-import AddQuestionModal from "./AddQuestionModal";
-import EditSubTopicModal from "./EditSubTopicModal";
-import DeleteSubTopicModal from "./DeleteSubTopicModal";
+import QuestionRow from "./question/QuestionRow";
+import AddQuestionModal from "./question/AddQuestionModal";
+import EditSubTopicModal from "./subtopic/EditSubTopicModal";
+import DeleteSubTopicModal from "./subtopic/DeleteSubTopicModal";
+import { Grip } from "lucide-react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 
-const SubTopicAccordion = ({ subTopic }) => {
+const SubTopicAccordion = ({ subTopic, dragHandleProps }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value={subTopic.id}>
-        <AccordionTrigger className="text-sm font-medium flex justify-between">
-          <span>
-            {subTopic.title} ({subTopic.questions.length})
+        <AccordionTrigger className="text-sm font-medium flex justify-between items-center">
+          <span className="flex items-center gap-2">
+            <span
+              className="inline-flex items-center justify-center cursor-grab"
+              {...(dragHandleProps || {})}
+            >
+              <Grip className="w-4 h-4 text-gray-500" />
+            </span>
+            <span>{subTopic.title}</span>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-medium">
+              {subTopic.questions.length}
+            </span>
           </span>
 
           <span className="flex gap-2">
@@ -51,13 +61,13 @@ const SubTopicAccordion = ({ subTopic }) => {
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        {...provided.dragHandleProps}
                         className="mb-1"
                       >
                         <QuestionRow
                           question={q}
                           topicId={subTopic.parentTopicId}
                           subTopicId={subTopic.id}
+                          dragHandleProps={provided.dragHandleProps}
                         />
                       </div>
                     )}

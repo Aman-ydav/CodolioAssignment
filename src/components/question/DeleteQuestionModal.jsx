@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteQuestion } from "../store/sheetSlice";
+import { deleteQuestion } from "../../store/sheetSlice";
 import {
   Dialog,
   DialogContent,
@@ -52,3 +52,4 @@ const DeleteQuestionModal = ({ topicId, subTopicId, question }) => {
 };
 
 export default DeleteQuestionModal;
+

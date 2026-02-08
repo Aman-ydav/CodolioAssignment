@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addSubTopic } from "../store/sheetSlice";
+import { addSubTopic } from "../../store/sheetSlice";
 
 const AddSubTopicBar = ({ topicId }) => {
   const [title, setTitle] = useState("");
@@ -31,3 +31,4 @@ const AddSubTopicBar = ({ topicId }) => {
 };
 
 export default AddSubTopicBar;
+

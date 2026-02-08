@@ -194,7 +194,7 @@ const sheetSlice = createSlice({
   const [moved] = state.topics.splice(sourceIndex, 1);
   state.topics.splice(destinationIndex, 0, moved);
 },
-reorderSubTopics: (state, action) => {
+    reorderSubTopics: (state, action) => {
   const { topicId, sourceIndex, destinationIndex } = action.payload;
 
   const topic = state.topics.find(t => t.id === topicId);
@@ -202,6 +202,22 @@ reorderSubTopics: (state, action) => {
 
   const [moved] = topic.subTopics.splice(sourceIndex, 1);
   topic.subTopics.splice(destinationIndex, 0, moved);
+},
+moveSubTopic: (state, action) => {
+  const { fromTopicId, toTopicId, sourceIndex, destinationIndex } = action.payload;
+
+  const fromTopic = state.topics.find(t => t.id === fromTopicId);
+  const toTopic = state.topics.find(t => t.id === toTopicId);
+  if (!fromTopic || !toTopic) return;
+
+  const [moved] = fromTopic.subTopics.splice(sourceIndex, 1);
+  if (!moved) return;
+
+  const insertIndex =
+    typeof destinationIndex === "number"
+      ? destinationIndex
+      : toTopic.subTopics.length;
+  toTopic.subTopics.splice(insertIndex, 0, moved);
 },
 
 moveQuestion: (state, action) => {
@@ -272,6 +288,7 @@ export const {
 export const {
   reorderTopics,
   reorderSubTopics,
+  moveSubTopic,
   moveQuestion,
 } = sheetSlice.actions;
 

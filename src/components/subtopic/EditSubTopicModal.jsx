@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { editSubTopic } from "../store/sheetSlice";
+import { editSubTopic } from "../../store/sheetSlice";
 import {
   Dialog,
   DialogContent,
@@ -69,3 +69,4 @@ const EditSubTopicModal = ({ topicId, subTopic }) => {
 };
 
 export default EditSubTopicModal;
+

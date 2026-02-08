@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import {
   reorderTopics,
   reorderSubTopics,
+  moveSubTopic,
   moveQuestion,
 } from "../store/sheetSlice";
 
@@ -67,16 +68,27 @@ const TopicList = () => {
 
     // ---- 2) SUBTOPICS ----
     if (type === "SUBTOPIC") {
-      if (source.droppableId !== destination.droppableId) return;
-      const topicId = source.droppableId.replace("subtopics-", "");
+      const fromTopicId = source.droppableId.replace("subtopics-", "");
+      const toTopicId = destination.droppableId.replace("subtopics-", "");
 
-      dispatch(
-        reorderSubTopics({
-          topicId,
-          sourceIndex: source.index,
-          destinationIndex: destination.index,
-        })
-      );
+      if (fromTopicId === toTopicId) {
+        dispatch(
+          reorderSubTopics({
+            topicId: fromTopicId,
+            sourceIndex: source.index,
+            destinationIndex: destination.index,
+          })
+        );
+      } else {
+        dispatch(
+          moveSubTopic({
+            fromTopicId,
+            toTopicId,
+            sourceIndex: source.index,
+            destinationIndex: destination.index,
+          })
+        );
+      }
     }
 
     // ---- 3) QUESTIONS
