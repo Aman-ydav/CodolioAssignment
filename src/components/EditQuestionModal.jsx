@@ -44,7 +44,7 @@ const EditQuestionModal = ({ topicId, subTopicId, question }) => {
     <Dialog>
       <DialogTrigger asChild>
         <span className="cursor-pointer text-gray-600 hover:text-black px-2">
-          ✏️
+          Edit
         </span>
       </DialogTrigger>
 
@@ -83,3 +83,4 @@ const EditQuestionModal = ({ topicId, subTopicId, question }) => {
 };
 
 export default EditQuestionModal;
+

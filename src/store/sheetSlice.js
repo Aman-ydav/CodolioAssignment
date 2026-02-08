@@ -188,6 +188,57 @@ const sheetSlice = createSlice({
 
       sub.questions = sub.questions.filter((q) => q.id !== questionId);
     },
+    reorderTopics: (state, action) => {
+  const { sourceIndex, destinationIndex } = action.payload;
+
+  const [moved] = state.topics.splice(sourceIndex, 1);
+  state.topics.splice(destinationIndex, 0, moved);
+},
+reorderSubTopics: (state, action) => {
+  const { topicId, sourceIndex, destinationIndex } = action.payload;
+
+  const topic = state.topics.find(t => t.id === topicId);
+  if (!topic) return;
+
+  const [moved] = topic.subTopics.splice(sourceIndex, 1);
+  topic.subTopics.splice(destinationIndex, 0, moved);
+},
+
+moveQuestion: (state, action) => {
+  const {
+    fromTopicId,
+    fromSubTopicId,
+    toTopicId,
+    toSubTopicId,
+    questionIndex,
+    destinationIndex,
+  } = action.payload;
+
+  const fromTopic = state.topics.find(t => t.id === fromTopicId);
+  const toTopic = state.topics.find(t => t.id === toTopicId);
+  if (!fromTopic || !toTopic) return;
+
+  const fromSub = fromTopic.subTopics.find(st => st.id === fromSubTopicId);
+  const toSub = toTopic.subTopics.find(st => st.id === toSubTopicId);
+  if (!fromSub || !toSub) return;
+
+  if (
+    fromTopicId === toTopicId &&
+    fromSubTopicId === toSubTopicId &&
+    questionIndex === destinationIndex
+  ) {
+    return;
+  }
+
+  const [moved] = fromSub.questions.splice(questionIndex, 1);
+  const insertIndex =
+    typeof destinationIndex === "number"
+      ? destinationIndex
+      : toSub.questions.length;
+  toSub.questions.splice(insertIndex, 0, moved);
+},
+
+
   },
   extraReducers: (builder) => {
     builder
@@ -216,5 +267,12 @@ export const {
   deleteSubTopic,
   editQuestion,
   deleteQuestion,
+
 } = sheetSlice.actions;
+export const {
+  reorderTopics,
+  reorderSubTopics,
+  moveQuestion,
+} = sheetSlice.actions;
+
 export default sheetSlice.reducer;
