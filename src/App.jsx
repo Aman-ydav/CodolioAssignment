@@ -11,10 +11,10 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="app-shell wide">
-      <header className="app-header">
+    <div className="app-shell">
+      <header className="app-header mx-20">
         <div>
-          <p className="app-kicker">Interactive Question Management Sheet</p>
+          <p className="app-kicker ">Interactive Question Management Sheet</p>
           <h1>Codolio Sheet Assignment</h1>
           <p className="app-subtitle">
             Curate topics, organize sub-topics, and manage questions with drag-and-drop.
