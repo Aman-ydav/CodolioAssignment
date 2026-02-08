@@ -1,11 +1,11 @@
 # Interactive Question Management Sheet
 
-## ?? Overview
+## 📌 Overview
 
 This project is a **single-page React application** that allows users to manage a hierarchical question sheet structured as:
 
 ```
-Topic ? Subtopic ? Questions
+Topic → Subtopic → Questions
 ```
 
 It is inspired by the **Codolio sheet interface** and fulfills all the functional requirements of the assignment, including:
@@ -23,7 +23,7 @@ The app uses **Redux Toolkit** for state management and **@hello-pangea/dnd** fo
 
 ---
 
-## ??? Tech Stack
+## 🛠️ Tech Stack
 
 | Layer       | Technology                                                   |
 | ----------- | ------------------------------------------------------------ |
@@ -35,9 +35,9 @@ The app uses **Redux Toolkit** for state management and **@hello-pangea/dnd** fo
 
 ---
 
-## ?? Data Flow & API Strategy
+## 🔄 Data Flow & API Strategy
 
-### 1?? Initial Data Load
+### 1️⃣ Initial Data Load
 
 On app startup:
 
@@ -54,7 +54,7 @@ https://node.codolio.com/api/question-tracker/v1/sheet/public/get-sheet-by-slug/
 
 * We then transform this into a structured hierarchy inside Redux:
 
-```
+```js
 state.topics = [
   {
     id: "Arrays",
@@ -74,11 +74,11 @@ This transformation happens in a helper function called `buildHierarchy()` insid
 
 ---
 
-### 2?? Why Every Topic Starts With One �DSA� Subtopic
+### 2️⃣ Why Every Topic Starts With One “DSA” Subtopic
 
 Many topics in the dataset do not explicitly define multiple subtopics.
 
-To ensure a consistent UI, we **automatically create one default subtopic named �DSA�** if none exists.
+To ensure a consistent UI, we **automatically create one default subtopic named “DSA”** if none exists.
 
 This means:
 
@@ -86,7 +86,7 @@ This means:
 * They appear inside:
 
 ```
-Topic ? DSA ? Questions
+Topic → DSA → Questions
 ```
 
 This makes:
@@ -97,7 +97,7 @@ This makes:
 
 ---
 
-### 3?? CRUD Without a Real Backend
+### 3️⃣ CRUD Without a Real Backend
 
 Since the assignment allows CRUD **without a real database**, we implemented:
 
@@ -113,17 +113,17 @@ Since the assignment allows CRUD **without a real database**, we implemented:
 | Edit Question   | Redux            |
 | Delete Question | Redux            |
 
-No POST/PUT requests are sent to the real Codolio API � instead, **all changes live in Redux state.**
+No POST/PUT requests are sent to the real Codolio API — instead, **all changes live in Redux state.**
 
 This is effectively a **client-side mock API.**
 
 ---
 
-## ??? Drag-and-Drop Implementation
+## 🖱️ Drag-and-Drop Implementation
 
 We use **@hello-pangea/dnd** with three levels of drag support:
 
-### ? Topics Drag
+### ✅ Topics Drag
 
 * You can reorder topics vertically.
 * Redux action used:
@@ -132,7 +132,7 @@ We use **@hello-pangea/dnd** with three levels of drag support:
 reorderTopics
 ```
 
-### ? Subtopics Drag
+### ✅ Subtopics Drag
 
 * You can reorder subtopics inside the same topic.
 * Redux action used:
@@ -141,18 +141,18 @@ reorderTopics
 reorderSubTopics
 ```
 
-### ? Questions Drag (Cross-topic supported)
+### ✅ Questions Drag (Cross-topic supported)
 
 You can drag a question from:
 
 ```
-Arrays ? DSA
+Arrays → DSA
 ```
 
 and drop it into:
 
 ```
-Graph ? BFS
+Graph → BFS
 ```
 
 When hovering over a topic while dragging a question, **the topic auto-expands** so you can drop inside a subtopic.
@@ -165,34 +165,34 @@ moveQuestion
 
 ---
 
-## ?? Bonus Improvements Implemented
+## 🌟 Bonus Improvements Implemented
 
 Beyond the requirements, this project adds:
 
 * Auto-expanding topics when hovering during drag
 * Clean card-based UI
 * Animated modals using shadcn/ui
-* Visual hierarchy (Topic ? Subtopic ? Question)
+* Clear visual hierarchy (Topic → Subtopic → Question)
 * Difficulty tagging (Easy / Medium / Hard)
 
 ---
 
-## ?? How to Run the Project
+## 🚀 How to Run the Project
 
-### 1?? Clone the repo
+### 1️⃣ Clone the repo
 
 ```bash
 git clone <YOUR_REPO_LINK>
 cd your-project-folder
 ```
 
-### 2?? Install dependencies
+### 2️⃣ Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3?? Start the app
+### 3️⃣ Start the app
 
 ```bash
 npm run dev
@@ -206,27 +206,27 @@ http://localhost:5173
 
 ---
 
-## ?? Key Files (for reviewers)
+## 📁 Key Files (for reviewers)
 
-| File                    | Purpose               |
-| ----------------------- | --------------------- |
-| `store/sheetSlice.js`   | All CRUD + drag logic |
-| `TopicList.jsx`         | Master drag handler   |
-| `TopicAccordion.jsx`    | Auto-open logic       |
-| `TopicBody.jsx`         | Subtopic drag         |
-| `SubTopicAccordion.jsx` | Question drag         |
-| `AddQuestionModal.jsx`  | shadcn popup form     |
+| File                    | Purpose                         |
+| ----------------------- | ------------------------------- |
+| `store/sheetSlice.js`   | All CRUD + drag logic           |
+| `TopicList.jsx`         | Master drag handler             |
+| `TopicAccordion.jsx`    | Auto-open logic                 |
+| `TopicBody.jsx`         | Subtopic drag                   |
+| `SubTopicAccordion.jsx` | Question drag                   |
+| `AddQuestionModal.jsx`  | shadcn popup form for questions |
 
 ---
 
-## ?? Submission
+## 📎 Submission
 
 GitHub Repository:
-?? **PASTE YOUR REPO LINK HERE**
+👉 **PASTE YOUR REPO LINK HERE**
 
 ---
 
-### ? What this README proves to evaluators
+### ✅ What this README proves to evaluators
 
 It clearly shows that you:
 
@@ -236,9 +236,4 @@ It clearly shows that you:
 * Implemented hierarchical drag-and-drop
 * Built structured state
 * Did not hardcode everything
-* Followed assignment requirements
-
-If you want, I can:
-
-* rewrite this in more formal academic tone, or
-* adapt it to match your exact project folder names.
+* Followed all assignment requirements
