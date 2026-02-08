@@ -64,7 +64,30 @@ const initialState = {
 const sheetSlice = createSlice({
   name: "sheet",
   initialState,
-  reducers: {},
+  reducers: {
+    addTopic: (state, action) => {
+      const title = action.payload.trim();
+
+      if (!title) return;
+
+      const exists = state.topics.some(
+        (t) => t.title.toLowerCase() === title.toLowerCase(),
+      );
+      if (exists) return;
+
+      state.topics.push({
+        id: title,
+        title: title,
+        subTopics: [
+          {
+            id: "DSA",
+            title: "DSA",
+            questions: [],
+          },
+        ],
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSheet.pending, (state) => {
@@ -82,4 +105,5 @@ const sheetSlice = createSlice({
   },
 });
 
+export const { addTopic } = sheetSlice.actions;
 export default sheetSlice.reducer;

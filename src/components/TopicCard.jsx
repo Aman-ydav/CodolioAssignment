@@ -1,6 +1,6 @@
 const TopicCard = ({ topic }) => {
   return (
-    <div className="bg-(--sheet-card) border border-(--sheet-line) rounded-xl p-5 mx-20 shadow-sm">
+    <div className="w-full bg-(--sheet-card) border border-(--sheet-line) rounded-xl p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold">{topic.title}</h2>

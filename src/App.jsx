@@ -2,6 +2,7 @@
 import { useDispatch } from "react-redux";
 import { fetchSheet } from "./store/sheetSlice";
 import TopicList from "./components/TopicList";
+import AddTopicBar from "./components/AddTopicBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
         </div>
       </header>
       <main>
+        <AddTopicBar />
         <TopicList />
       </main>
     </div>
