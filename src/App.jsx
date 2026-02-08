@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="app-shell">
-      <header className="app-header mx-20">
+      <header className="app-header">
         <div>
           <p className="app-kicker">Interactive Question Management Sheet</p>
           <h1>Codolio Sheet Assignment</h1>

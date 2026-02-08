@@ -16,8 +16,8 @@ const TopicBody = ({ topic, enableHoverOpen }) => {
           >
             {topic.subTopics.map((st, index) => (
               <Draggable
-                key={st.id}
-                draggableId={`sub-${st.id}`}
+                key={st.uid || st.id}
+                draggableId={`sub-${st.uid || st.id}`}
                 index={index}
               >
                 {(provided) => (

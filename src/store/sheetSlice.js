@@ -33,6 +33,7 @@ const buildHierarchy = (questions, topicOrder) => {
 
     if (!topicMap[topicName].subTopics[subTopicName]) {
       topicMap[topicName].subTopics[subTopicName] = {
+        uid: `${topicName}::${subTopicName}`,
         id: subTopicName,
         title: subTopicName,
         questions: [],
@@ -55,6 +56,9 @@ const buildHierarchy = (questions, topicOrder) => {
     subTopics: Object.values(topicMap[t].subTopics),
   }));
 };
+
+const createSubTopicUid = () =>
+  `sub-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
 const initialState = {
   topics: [],
@@ -81,6 +85,7 @@ const sheetSlice = createSlice({
         title: title,
         subTopics: [
           {
+            uid: createSubTopicUid(),
             id: "DSA",
             title: "DSA",
             questions: [],
@@ -104,6 +109,7 @@ const sheetSlice = createSlice({
       if (exists) return;
 
       topic.subTopics.push({
+        uid: createSubTopicUid(),
         id: cleanTitle,
         title: cleanTitle,
         questions: [],
