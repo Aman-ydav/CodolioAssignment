@@ -1,5 +1,4 @@
 ﻿import { useSelector } from "react-redux";
-import TopicCard from "./TopicCard";
 import TopicAccordion from "./TopicAccordion";
 
 const TopicList = () => {

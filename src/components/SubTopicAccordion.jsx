@@ -6,13 +6,28 @@ import {
 } from "@/components/ui/accordion";
 import QuestionRow from "./QuestionRow";
 import AddQuestionModal from "./AddQuestionModal";
+import EditSubTopicModal from "./EditSubTopicModal";
+import DeleteSubTopicModal from "./DeleteSubTopicModal";
 
 const SubTopicAccordion = ({ subTopic }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value={subTopic.id}>
-        <AccordionTrigger className="text-sm font-medium">
-          {subTopic.title} ({subTopic.questions.length})
+        <AccordionTrigger className="text-sm font-medium flex justify-between">
+          <span>
+            {subTopic.title} ({subTopic.questions.length})
+          </span>
+
+          <span className="flex gap-2">
+            <EditSubTopicModal
+              topicId={subTopic.parentTopicId}
+              subTopic={subTopic}
+            />
+            <DeleteSubTopicModal
+              topicId={subTopic.parentTopicId}
+              subTopic={subTopic}
+            />
+          </span>
         </AccordionTrigger>
 
         <AccordionContent className="pl-2 space-y-2">
@@ -23,7 +38,12 @@ const SubTopicAccordion = ({ subTopic }) => {
 
           <div className="space-y-2 mt-2">
             {subTopic.questions.map((q) => (
-              <QuestionRow key={q.id} question={q} />
+              <QuestionRow
+                key={q.id}
+                question={q}
+                topicId={subTopic.parentTopicId}
+                subTopicId={subTopic.id}
+              />
             ))}
           </div>
         </AccordionContent>

@@ -140,6 +140,54 @@ const sheetSlice = createSlice({
     deleteTopic: (state, action) => {
       state.topics = state.topics.filter((t) => t.id !== action.payload);
     },
+    editSubTopic: (state, action) => {
+      const { topicId, subTopicId, newTitle } = action.payload;
+      const cleanTitle = newTitle.trim();
+      if (!cleanTitle) return;
+
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (!topic) return;
+
+      const sub = topic.subTopics.find((st) => st.id === subTopicId);
+      if (!sub) return;
+
+      sub.id = cleanTitle;
+      sub.title = cleanTitle;
+    },
+    deleteSubTopic: (state, action) => {
+      const { topicId, subTopicId } = action.payload;
+
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (!topic) return;
+
+      topic.subTopics = topic.subTopics.filter((st) => st.id !== subTopicId);
+    },
+
+    editQuestion: (state, action) => {
+      const { topicId, subTopicId, questionId, updates } = action.payload;
+
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (!topic) return;
+
+      const sub = topic.subTopics.find((st) => st.id === subTopicId);
+      if (!sub) return;
+
+      const q = sub.questions.find((q) => q.id === questionId);
+      if (!q) return;
+
+      Object.assign(q, updates);
+    },
+    deleteQuestion: (state, action) => {
+      const { topicId, subTopicId, questionId } = action.payload;
+
+      const topic = state.topics.find((t) => t.id === topicId);
+      if (!topic) return;
+
+      const sub = topic.subTopics.find((st) => st.id === subTopicId);
+      if (!sub) return;
+
+      sub.questions = sub.questions.filter((q) => q.id !== questionId);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -158,6 +206,15 @@ const sheetSlice = createSlice({
   },
 });
 
-export const { addTopic, addSubTopic, addQuestion, editTopic, deleteTopic } =
-  sheetSlice.actions;
+export const {
+  addTopic,
+  addSubTopic,
+  addQuestion,
+  editTopic,
+  deleteTopic,
+  editSubTopic,
+  deleteSubTopic,
+  editQuestion,
+  deleteQuestion,
+} = sheetSlice.actions;
 export default sheetSlice.reducer;
