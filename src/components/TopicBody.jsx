@@ -2,7 +2,7 @@ import { Droppable, Draggable } from "@hello-pangea/dnd";
 import AddSubTopicBar from "./subtopic/AddSubTopicBar";
 import SubTopicAccordion from "./SubTopicAccordion";
 
-const TopicBody = ({ topic }) => {
+const TopicBody = ({ topic, enableHoverOpen }) => {
   return (
     <div className="space-y-4">
       <AddSubTopicBar topicId={topic.id} />
@@ -29,6 +29,7 @@ const TopicBody = ({ topic }) => {
                     <SubTopicAccordion
                       subTopic={{ ...st, parentTopicId: topic.id }}
                       dragHandleProps={provided.dragHandleProps}
+                      enableHoverOpen={enableHoverOpen}
                     />
                   </div>
                 )}

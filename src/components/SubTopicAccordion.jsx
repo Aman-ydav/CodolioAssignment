@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -11,11 +12,50 @@ import DeleteSubTopicModal from "./subtopic/DeleteSubTopicModal";
 import { Grip } from "lucide-react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 
-const SubTopicAccordion = ({ subTopic, dragHandleProps }) => {
+const SubTopicAccordion = ({
+  subTopic,
+  dragHandleProps,
+  enableHoverOpen,
+}) => {
+  const [open, setOpen] = useState(false);
+  const hoverTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimerRef.current) {
+        clearTimeout(hoverTimerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full"
+      value={open ? subTopic.id : ""}
+      onValueChange={(v) => setOpen(v === subTopic.id)}
+    >
       <AccordionItem value={subTopic.id}>
-        <AccordionTrigger className="text-sm font-medium flex justify-between items-center">
+        <AccordionTrigger
+          className="text-sm font-medium flex justify-between items-center"
+          onPointerEnter={() => {
+            if (!enableHoverOpen) return;
+            if (hoverTimerRef.current) {
+              clearTimeout(hoverTimerRef.current);
+            }
+            hoverTimerRef.current = setTimeout(() => {
+              setOpen(true);
+            }, 350);
+          }}
+          onPointerLeave={() => {
+            if (!enableHoverOpen) return;
+            if (hoverTimerRef.current) {
+              clearTimeout(hoverTimerRef.current);
+              hoverTimerRef.current = null;
+            }
+          }}
+        >
           <span className="flex items-center gap-2">
             <span
               className="inline-flex items-center justify-center cursor-grab"

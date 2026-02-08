@@ -55,7 +55,7 @@ const TopicAccordion = ({
         </AccordionTrigger>
 
         <AccordionContent className="px-4 pb-2">
-          <TopicBody topic={topic} />
+          <TopicBody topic={topic} enableHoverOpen={enableHoverOpen} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
