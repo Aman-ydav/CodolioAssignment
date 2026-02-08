@@ -1,5 +1,6 @@
 ﻿import { useSelector } from "react-redux";
 import TopicCard from "./TopicCard";
+import TopicAccordion from "./TopicAccordion";
 
 const TopicList = () => {
   const topics = useSelector((state) => state.sheet.topics);
@@ -7,7 +8,7 @@ const TopicList = () => {
   return (
      <div className="sheet-shell">
       {topics.map((topic) => (
-        <TopicCard key={topic.id} topic={topic} />
+        <TopicAccordion key={topic.id} topic={topic} />
       ))}
     </div>
   );
