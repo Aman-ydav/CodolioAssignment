@@ -154,7 +154,6 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 24px;
-  border-bottom: 1px solid var(--sheet-line);
   padding-bottom: 24px;
 }
 
@@ -175,6 +174,54 @@
   max-width: 520px;
   font-size: 1rem;
   color: rgba(31, 20, 13, 0.7);
+}
+
+.dev-card {
+  min-width: 240px;
+  max-width: 320px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(240, 99, 26, 0.25);
+  background: linear-gradient(130deg, rgba(255, 250, 242, 0.98), rgba(255, 237, 221, 0.9));
+  box-shadow: 0 18px 32px -28px rgba(31, 20, 13, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  animation: dev-float 6s ease-in-out infinite;
+}
+
+.dev-card__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(31, 20, 13, 0.6);
+  font-weight: 700;
+}
+
+.dev-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--sheet-ink);
+}
+
+.dev-card__mail {
+  font-size: 0.9rem;
+  color: #b44910;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dev-card__mail:hover {
+  text-decoration: underline;
+}
+
+@keyframes dev-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .sheet-shell {

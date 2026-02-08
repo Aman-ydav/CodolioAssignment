@@ -15,11 +15,21 @@ function App() {
     <div className="app-shell">
       <header className="app-header mx-20">
         <div>
-          <p className="app-kicker ">Interactive Question Management Sheet</p>
+          <p className="app-kicker">Interactive Question Management Sheet</p>
           <h1>Codolio Sheet Assignment</h1>
           <p className="app-subtitle">
             Curate topics, organize sub-topics, and manage questions with drag-and-drop.
           </p>
+        </div>
+        <div className="dev-card">
+          <p className="dev-card__label">Developed By</p>
+          <p className="dev-card__name">Aman Yadav</p>
+          <a
+            className="dev-card__mail"
+            href="mailto:amanyadav923949@gmail.com"
+          >
+            amanyadav923949@gmail.com
+          </a>
         </div>
       </header>
       <main>
